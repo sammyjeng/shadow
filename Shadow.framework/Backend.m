@@ -16,15 +16,15 @@
     return self;
 }
 
-+ (NSArray<ShadowRuleset *> *)_loadRulesets {
-    NSMutableArray<ShadowRuleset *>* result = [NSMutableArray new];
++ (NSArray<KnoxRuleset *> *)_loadRulesets {
+    NSMutableArray<KnoxRuleset *>* result = [NSMutableArray new];
 
     NSURL* ruleset_path_url = [NSURL fileURLWithPath:[RootBridge getJBPath:@SHADOW_RULESETS] isDirectory:YES];
     NSArray* ruleset_urls = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:ruleset_path_url includingPropertiesForKeys:@[] options:0 error:nil];
 
     if(ruleset_urls) {
         for(NSURL* url in ruleset_urls) {
-            ShadowRuleset* ruleset = [ShadowRuleset rulesetWithURL:url];
+            KnoxRuleset* ruleset = [KnoxRuleset rulesetWithURL:url];
 
             if(ruleset) {
                 NSDictionary* info = [[ruleset internalDictionary] objectForKey:@"RulesetInfo"];
@@ -61,7 +61,7 @@
     __block BOOL whitelisted = NO;
 
     // Check rulesets
-    [rulesets enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(ShadowRuleset* ruleset, NSUInteger idx, BOOL* stop) {
+    [rulesets enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(KnoxRuleset* ruleset, NSUInteger idx, BOOL* stop) {
         if(![ruleset isPathCompliant:path]) {
             compliant = NO;
             *stop = YES;
@@ -102,7 +102,7 @@
     __block BOOL restricted = NO;
 
     // Check rulesets
-    [rulesets enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(ShadowRuleset* ruleset, NSUInteger idx, BOOL* stop) {
+    [rulesets enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(KnoxRuleset* ruleset, NSUInteger idx, BOOL* stop) {
         if([ruleset isSchemeRestricted:scheme]) {
             restricted = YES;
             *stop = YES;

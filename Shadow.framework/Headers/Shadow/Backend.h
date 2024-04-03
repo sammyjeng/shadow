@@ -5,7 +5,7 @@
 #import <Shadow/Ruleset.h>
 
 @interface ShadowBackend : NSObject {
-    NSArray<ShadowRuleset *>* rulesets;
+    NSArray<KnoxRuleset *>* rulesets;
     NSCache<NSString *, NSNumber *>* cache_restricted;
 }
 

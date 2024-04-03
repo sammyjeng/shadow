@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ShadowRuleset : NSObject {
+@interface KnoxRuleset : NSObject {
     NSSet<NSString *>* set_urlschemes;
     NSSet<NSString *>* set_whitelist;
     NSSet<NSString *>* set_blacklist;

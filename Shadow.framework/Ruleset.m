@@ -1,6 +1,6 @@
 #import <Shadow/Ruleset.h>
 
-@implementation ShadowRuleset
+@implementation KnoxRuleset
 @synthesize internalDictionary;
 
 - (instancetype)init {
@@ -20,7 +20,7 @@
     NSDictionary* ruleset_dict = [NSDictionary dictionaryWithContentsOfURL:url];
 
     if(ruleset_dict) {
-        ShadowRuleset* ruleset = [self new];
+        KnoxRuleset* ruleset = [self new];
         [ruleset setInternalDictionary:ruleset_dict];
         [ruleset _compile];
         return ruleset;
