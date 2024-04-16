@@ -1,5 +1,5 @@
 ARCHS ?= arm64
-TARGET ?= iphone:clang:latest:14.0
+TARGET ?= iphone:clang:latest:14
 
 include $(THEOS)/makefiles/common.mk
 SUBPROJECTS += Shadow.framework

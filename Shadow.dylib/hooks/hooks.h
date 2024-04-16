@@ -9,6 +9,7 @@
 #import <sys/utsname.h>
 #import <sys/syslimits.h>
 #import <sys/time.h>
+#import <sys/ioctl.h>
 #import <errno.h>
 #import <fcntl.h>
 #import <mach-o/dyld.h>

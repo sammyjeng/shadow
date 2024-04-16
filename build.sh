@@ -17,7 +17,7 @@ rm -rf $THEOS/lib/Shadow.framework
 
 # build main project (rooted ver.)
 make clean &&
-make package FINALPACKAGE=1 &&
+THEOS_PACKAGE_SCHEME=rootful make package ARCS="arm" TARGET=iphone:clang:latest:14.0 FINALPACKAGE=1 &&
 cp -p "`ls -dtr1 packages/* | tail -1`" $PWD/build/
 
 rm -rf $THEOS/lib/Shadow.framework
