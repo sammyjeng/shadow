@@ -68,6 +68,17 @@ static Class replaced_NSClassFromString(NSString* aClassName) {
     return nil;
 }
 
+// iosSecuritySuite objc class check bypass ~ 809323710123
+static id (*original_objc_getClass)(const char *name); 
+static id replaced_objc_getClass(const char *name) {
+    id result = original_objc_getClass(name);
+
+    if(isCallerTweak() || ![_shadow isAddrRestricted:(__bridge const void *)result]) {
+        return result;
+    }
+    return nil;
+}
+
 typedef struct _NXMapTable NXMapTable;
 typedef struct _NXHashTable NXHashTable;
 
@@ -104,6 +115,7 @@ void shadowhook_objc(HKSubstitutor* hooks) {
 }
 
 void shadowhook_objc_hidetweakclasses(HKSubstitutor* hooks) {
+    MSHookFunction(objc_getClass, replaced_objc_getClass, (void **) &original_objc_getClass);
     MSHookFunction(NSClassFromString, replaced_NSClassFromString, (void **) &original_NSClassFromString);
     MSHookFunction(NXMapGet, replaced_NXMapGet, (void **) &original_NXMapGet);
     MSHookFunction(NXHashGet, replaced_NXHashGet, (void **) &original_NXHashGet);

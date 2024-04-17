@@ -20,6 +20,10 @@
 - (BOOL)isJailBroken {
     return NO;
 }
+
+- (BOOL)getPerk{
+    return NO;
+}
 %end
 
 // %hook SFAntiPiracy
@@ -39,9 +43,17 @@
 
 %hook DTTJailbreakDetection
 + (BOOL)isJailbroken {
+    NSLog(@"[+] DTTJailbreak");
     return NO;
 }
 %end
+
+%hook CPrBaseController
+- (BOOL)jAilBrokenSimulator{
+    NSLog(@"[+] CPrBase");
+    return NO;
+}
+%end 
 
 %hook ANSMetadata
 - (BOOL)computeIsJailbroken {
@@ -54,7 +66,7 @@
 %end
 
 %hook AppsFlyerUtils
-+ (BOOL)isJailBreakon {
++ (BOOL)isJailBroken{
     return NO;
 }
 

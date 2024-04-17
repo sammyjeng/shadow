@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Theos Setup
+        uses: Randomblock1/theos-action@v1
+
+      - name: Setup libSandy
+        run: |
+          git clone https://github.com/realthunder/mac-headers --depth 1
+          mv mac-headers/usr/include/xpc $THEOS/include
+          git clone https://github.com/opa334/libSandy vendor/libSandy --depth 1
+          cd vendor/libSandy/ && ./install_to_theos.sh && cd -
+
+      - name: Setup AltList
+        run: |
+          git clone https://github.com/opa334/AltList --depth 1
+          cd AltList && ./install_to_theos.sh && cd -
+
+      - name: Build shadow
+        run: ./build.sh
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        with:
+          files: |
+            ${{ github.workspace }}/packages/*.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
