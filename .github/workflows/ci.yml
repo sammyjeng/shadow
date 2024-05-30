@@ -23,10 +23,17 @@ jobs:
       - name: Theos Setup
         uses: NyaMisty/theos-action@master
 
+      - name: Setup libSandy
+        run: |
+          git clone https://github.com/realthunder/mac-headers --depth 1
+          mv mac-headers/usr/include/xpc $THEOS/include
+          git clone https://github.com/opa334/libSandy vendor/libSandy --depth 1
+          cd vendor/libSandy/ && ./install_to_theos.sh && cd -
+
       - name: Setup AltList
         run: |
-          git clone https://github.com/opa334/AltList
-          ./AltList/install_to_theos.sh
+          git clone https://github.com/opa334/AltList --depth 1
+          cd AltList && ./install_to_theos.sh && cd -
         
       - name: Build shadow
         run: ./build.sh
