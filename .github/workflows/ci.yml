@@ -20,9 +20,14 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Theos Setup (Setup)
+      - name: Theos Setup
         uses: NyaMisty/theos-action@master
 
+      - name: Setup AltList
+        run: |
+          git clone https://github.com/opa334/AltList
+          ./AltList/install_to_theos.sh
+        
       - name: Build shadow
         run: ./build.sh
     
