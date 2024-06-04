@@ -23,10 +23,6 @@ jobs:
       - name: Theos Setup
         uses: Randomblock1/theos-action@v1
 
-      - name: Create Generic Symlinks
-        run: |
-          cd $THEOS/sdks && ./create_generic_symlinks.sh -D ../sdks/ && cd /Users/runner/work/shadow/shadow/
-
       - name: Setup libSandy
         run: |
           git clone https://github.com/realthunder/mac-headers --depth 1
