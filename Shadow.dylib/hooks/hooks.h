@@ -52,6 +52,8 @@
 
 #define isCallerTweak()         [_shadow isAddrExternal:__builtin_extract_return_addr(__builtin_return_address(0))]
 
+
+extern void shadowhook_iosSecuritySuite(HKSubstitutor* hooks);
 extern void shadowhook_DeviceCheck(HKSubstitutor* hooks);
 extern void shadowhook_dyld(HKSubstitutor* hooks);
 extern void shadowhook_libc(HKSubstitutor* hooks);

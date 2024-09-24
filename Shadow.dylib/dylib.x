@@ -206,6 +206,12 @@
         shadowhook_NSThread(substitutor);
     }
 
+    if([prefs_load[@"Hook_iosSecuritySuite"] boolValue]){
+        NSLog(@"+ iosSecuritySuite");
+
+        shadowhook_iosSecuritySuite(substitutor);
+    }
+
     if([prefs_load[@"Hook_DeviceCheck"] boolValue]) {
         NSLog(@"+ devicecheck");
 
