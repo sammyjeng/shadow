@@ -30,7 +30,7 @@
 "HOOK_ANTIDBG" = "Anti-Debugging Methods";
 "HOOK_SYSCALL" = "Private Syscalls";
 "HOOK_APPENUM" = "App Enumeration";
-
+"HOOK_IOSSECURITYSUITE" = "IOSSecuritySuite Bypass";
 "DNGR_HOOKS" = "Dangerous Hooks";
 "DNGR_HOOKS_DESC" = "Low-level bypass methods. These hooks may cause some apps to crash.";
 
