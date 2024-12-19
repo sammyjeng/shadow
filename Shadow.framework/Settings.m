@@ -14,22 +14,22 @@
             @"Hook_DynamicLibraries" : @(YES),
             @"Hook_URLScheme" : @(YES),
             @"Hook_EnvVars" : @(YES),
-            @"Hook_Foundation" : @(NO),
-            @"Hook_DeviceCheck" : @(YES),
-            @"Hook_MachBootstrap" : @(NO),
-            @"Hook_SymLookup" : @(NO),
-            @"Hook_LowLevelC" : @(NO),
-            @"Hook_AntiDebugging" : @(NO),
-            @"Hook_DynamicLibrariesExtra" : @(NO),
-            @"Hook_ObjCRuntime" : @(NO),
+            @"Hook_Foundation" : @(YES),
+            @"Hook_DeviceCheck" : @(YES), 
+            @"Hook_MachBootstrap" : @(YES),
+            @"Hook_SymLookup" : @(YES),
+            @"Hook_LowLevelC" : @(YES),
+            @"Hook_AntiDebugging" : @(YES),
+            @"Hook_DynamicLibrariesExtra" : @(YES),
+            @"Hook_ObjCRuntime" : @(YES),
             @"Hook_FakeMac" : @(NO),
-            @"Hook_Syscall" : @(NO),
-            @"Hook_Sandbox" : @(NO),
-            @"Hook_Memory" : @(NO),
-            @"Hook_TweakClasses" : @(NO),
-            @"Hook_HideApps" : @(NO)
+            @"Hook_Syscall" : @(YES),
+            @"Hook_Sandbox" : @(YES),
+            @"Hook_Memory" : @(YES),
+            @"Hook_TweakClasses" : @(YES),
+            @"Hook_HideApps" : @(YES),
+            @"Hook_iosSecuritySuite": @(YES)
         };
-
         userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@SHADOW_PREFS_PLIST];
         [userDefaults registerDefaults:defaultSettings];
     }

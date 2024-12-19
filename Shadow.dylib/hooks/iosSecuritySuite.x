@@ -16,7 +16,12 @@ bool replaced_amIProxied(){
     return retval;
 }
 
-//$s16IOSSecuritySuiteAAC13amIJailbrokenSbyFZ
+OriginalMethodType orig_amIJailBroken;
+bool replaced_amIJailBroken(){
+    bool retval = orig_amIJailBroken();
+    retval = NO;
+    return retval;
+}
 
 void shadowhook_iosSecuritySuite(HKSubstitutor* hooks){
     void *handle = dlopen(NULL, RTLD_LAZY);
@@ -24,6 +29,7 @@ void shadowhook_iosSecuritySuite(HKSubstitutor* hooks){
     if (handle) {
         orig_amIReverseEngineered = (OriginalMethodType)dlsym(handle, "$s16IOSSecuritySuiteAAC20amIReverseEngineeredSbyFZ");
         orig_amIProxied = (OriginalMethodType)dlsym(handle, "$s16IOSSecuritySuiteAAC10amIProxiedSbyFZ");
+        orig_amIJailBroken = (OriginalMethodType)dlsym(handle, "$s16IOSSecuritySuiteAAC13amIJailbrokenSbyFZ");
         if (orig_amIReverseEngineered) {
             NSLog(@" [+] IOSSecuritySuite.amIReverseEngineered function address: %p", orig_amIReverseEngineered);
             MSHookFunction(orig_amIReverseEngineered, replaced_amIReverseEngineered, (void **)&orig_amIReverseEngineered);
@@ -32,7 +38,10 @@ void shadowhook_iosSecuritySuite(HKSubstitutor* hooks){
             NSLog(@" [+] IOSSecuritySuite.amIProxied function address: %p", orig_amIProxied);
             MSHookFunction(orig_amIProxied, replaced_amIProxied, (void **)&orig_amIProxied);
         }
+        if (orig_amIJailBroken){
+            NSLog(@" [+] IOSSecuritySuite.JailBroken function address: %p", orig_amIJailBroken);
+            MSHookFunction(orig_amIJailBroken, replaced_amIJailBroken, (void **)&orig_amIJailBroken);
+        }
         dlclose(handle);
     }
 }
-
