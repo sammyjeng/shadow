@@ -312,6 +312,12 @@
     return false;
 }
 %end
+
+%hook JailMonkey
+- (bool) isJailBroken {
+    return false;
+}
+%end
 %end
 
 void shadowhook_DeviceCheck(HKSubstitutor* hooks) {
